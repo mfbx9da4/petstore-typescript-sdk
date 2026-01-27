@@ -10,3 +10,9 @@ targets:
     typescript:
         target: typescript
         source: petstore
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/speakeasy-self/speakeasy-self/petstore-typescript-code-samples
+            labelOverride:
+                fixedValue: Typescript (SDK)
+            blocking: false

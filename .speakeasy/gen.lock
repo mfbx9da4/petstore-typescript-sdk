@@ -3,20 +3,22 @@ id: 78f18c6b-6b5a-4e0f-8c33-3b9d8ecaaf56
 management:
   docChecksum: 5a9d074076e16dda8198463bc380b5ae
   docVersion: 1.0.27
-  speakeasyVersion: 1.697.5
-  generationVersion: 2.799.0
-  releaseVersion: 0.0.1
-  configChecksum: aa7fa9eb18d437dc4093eaeae9d67983
+  speakeasyVersion: 1.698.0
+  generationVersion: 2.801.0
+  releaseVersion: 0.0.2
+  configChecksum: 6fe2fa4076a0cec79f507ba44d9ae3c2
+  repoURL: https://github.com/mfbx9da4/petstore-typescript-sdk.git
+  installationURL: https://github.com/mfbx9da4/petstore-typescript-sdk
 persistentEdits:
-  generation_id: a0a0216a-3645-4978-a5d7-dcbb8a36063d
-  pristine_commit_hash: f088c5696e2639881e619fbaf4a8d07d34fcf181
-  pristine_tree_hash: ea418481fa926337803d46d7ea5d9fc125f609d1
+  generation_id: 0e02236f-f446-4917-af71-6f461d8695d2
+  pristine_commit_hash: a6c1557e44c660540fd59ff63adb15947fcbc355
+  pristine_tree_hash: cef2e2e0c90ba47682c9d0cdfbd0b5b488e5c9c5
 features:
   typescript:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.26.22
+    core: 3.26.23
     defaultEnabledRetries: 0.1.0
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
@@ -266,12 +268,12 @@ trackedFiles:
     pristine_git_object: 5c988cb3be3d1ff514b31fb508c89f5c85b1d792
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:69718a044760f3375d75c748e2d467bcd176473b
-    pristine_git_object: f14de91056c8ec04f6ea48b80e213b4733d55ac2
+    last_write_checksum: sha1:b989ce8ba950aed157addca99276dbce4090d46c
+    pristine_git_object: 0dfe5edb32d6f9b05ff474694d0c913f27df29ef
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:8b48806ae89b3937a2f77e1a6fe46bbf747c10dc
-    pristine_git_object: a077d7cf16b2898947f4871522bceb24bbf43c69
+    last_write_checksum: sha1:a81f21771e2551002e675a9458db2b2614df4c43
+    pristine_git_object: 478e58d513895d216b630cacb57cbf5853dc3bb7
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:d6a837f6980c9001ce7bd0c29122310de99d7da3
@@ -418,8 +420,8 @@ trackedFiles:
     pristine_git_object: 44be0eae8246521b230e8e711a88eff738fc015d
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:b460b44dafe0dd5267f6031455cabac26b1366d4
-    pristine_git_object: 1ea6964f505927d99124f34655180dd7fb30b920
+    last_write_checksum: sha1:38fad6a37163719a792e1c946488e8fdec18d95a
+    pristine_git_object: f54771c1b333830ad041e77ff91a4db73a66579e
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250

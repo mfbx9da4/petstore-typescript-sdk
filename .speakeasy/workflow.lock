@@ -1,4 +1,4 @@
-speakeasyVersion: 1.697.5
+speakeasyVersion: 1.698.0
 sources:
     petstore:
         sourceNamespace: petstore
@@ -6,6 +6,7 @@ sources:
         sourceBlobDigest: sha256:5077b99758cc178915507ff816665e6eb530d833b66386a92c258fadb883190c
         tags:
             - latest
+            - main
             - 1.0.27
 targets:
     typescript:
@@ -13,6 +14,8 @@ targets:
         sourceNamespace: petstore
         sourceRevisionDigest: sha256:deccc6dc64d0e2a49cca989e5f651667a4db466397ee1eba5b4fd69b1c89766c
         sourceBlobDigest: sha256:5077b99758cc178915507ff816665e6eb530d833b66386a92c258fadb883190c
+        codeSamplesNamespace: petstore-typescript-code-samples
+        codeSamplesRevisionDigest: sha256:b829e129d0d03686b6fa8e4510eab2a1c6610c35496bb91efd787526f3e6b88a
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -26,3 +29,9 @@ workflow:
         typescript:
             target: typescript
             source: petstore
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/speakeasy-self/speakeasy-self/petstore-typescript-code-samples
+                labelOverride:
+                    fixedValue: Typescript (SDK)
+                blocking: false
