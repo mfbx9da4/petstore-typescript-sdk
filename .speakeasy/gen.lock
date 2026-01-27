@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 78f18c6b-6b5a-4e0f-8c33-3b9d8ecaaf56
 management:
-  docChecksum: 9a91a5e517383974b7d70cd1ddcf5ee3
+  docChecksum: 6c4ba8af7841ae5be30cf25a7f34d0a5
   docVersion: 1.0.28
   speakeasyVersion: 1.698.0
   generationVersion: 2.801.0
-  releaseVersion: 0.0.3
-  configChecksum: afa51ba276594b8d41c5c8a2e64bfe59
+  releaseVersion: 0.0.4
+  configChecksum: aa88a633e01e8e295c230104b064d8a5
   repoURL: https://github.com/mfbx9da4/petstore-typescript-sdk.git
   installationURL: https://github.com/mfbx9da4/petstore-typescript-sdk
 persistentEdits:
-  generation_id: 277e04e7-dfd9-41d9-be29-8318a519bb93
-  pristine_commit_hash: 9b4654487b376974b0b5831c2afa77756d473a50
-  pristine_tree_hash: 9fa03fd4b14eaa1d4b6a917cce35adddb3715670
+  generation_id: 0cb3215b-c908-427a-b6d5-93178f8b9343
+  pristine_commit_hash: e756665a6d0e82c60e87ab7b0bd7da247226e2cd
+  pristine_tree_hash: 7d63139c457ab2fa305af6de70a24d2f60a4732e
 features:
   typescript:
     acceptHeaders: 2.81.2
@@ -184,8 +184,8 @@ trackedFiles:
     pristine_git_object: 0176eb9546246775882d6aec9ce04a413f9c120f
   docs/models/operations/healthcheckresponsebody.md:
     id: 1b7e154a7595
-    last_write_checksum: sha1:8c20a8e6a976caa247094dbd67842ca1d05347f3
-    pristine_git_object: 853d8a14679e8e5f175ecfa80bfb8952de35ce48
+    last_write_checksum: sha1:d13682f2c57ff4b8930f40ab042fd055a34d02b7
+    pristine_git_object: e91a8120f64bb771b995974a87f6421d1c368672
   docs/models/operations/loginuserrequest.md:
     id: 0d7f1149c71e
     last_write_checksum: sha1:cae0692486ddc5e03d3b4d74799740ed308b1e16
@@ -276,12 +276,12 @@ trackedFiles:
     pristine_git_object: 41d5f104d3b23e74e53f10e1aee1eeb94b44238b
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:e615545c577cee4f459b27c3e0159709ed6e3c50
-    pristine_git_object: bd46279b83680ba1a732fb967aab4eaf30761167
+    last_write_checksum: sha1:af5b63c6f644a406bdfb5ad1c272089f12a9267f
+    pristine_git_object: 511e5754e137f0472d44a582439ae06bc9074654
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:c3e29562f0c89dd550f27b0ab31ce5215a571d66
-    pristine_git_object: cb0aac4028c06489daedf50f4c9f1632fce3c216
+    last_write_checksum: sha1:552ff83fe1223fbd3491d835f95ccdeba4930bfa
+    pristine_git_object: 148a80f59134599131fea2ada67e96dbcc7cb03a
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:d6a837f6980c9001ce7bd0c29122310de99d7da3
@@ -432,8 +432,8 @@ trackedFiles:
     pristine_git_object: 44be0eae8246521b230e8e711a88eff738fc015d
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:008447d7bff6f381acc9ee2c0ce6b3e001be3001
-    pristine_git_object: bd8352412238c34ff6739cdd7c1edd44e33788ff
+    last_write_checksum: sha1:75db5f5376eaacad9f2b46f058d5c677eb8cb605
+    pristine_git_object: 60b359b4bf44463acd0bee0dcbcb85942f40e34e
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -608,8 +608,8 @@ trackedFiles:
     pristine_git_object: b47d53053eb24c9dca1401f09e067de6beb164ae
   src/models/operations/healthcheck.ts:
     id: 1805dbc46aa1
-    last_write_checksum: sha1:d4a22a5485790262d1d99b5d4659a37052c4db87
-    pristine_git_object: e1f8a652f3e9f09dc950e9724c229d00c08fd07a
+    last_write_checksum: sha1:9af6e8bee5e34bcfc41d6752dc6dda0379196874
+    pristine_git_object: 2f88d01f8cd3bc45f20ec61323e39a46f17e68c6
   src/models/operations/index.ts:
     id: 0d9ffaf774d2
     last_write_checksum: sha1:2eba277f9e3880449f9d1595e16f87b038d9244c
@@ -930,5 +930,5 @@ examples:
     speakeasy-default-health-check:
       responses:
         "200":
-          application/json: {"status": "healthy", "version": "1.0.28"}
+          application/json: {"version": "1.0.28"}
 examplesVersion: 1.0.2

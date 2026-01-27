@@ -12,7 +12,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  * API is healthy
  */
 export type HealthCheckResponseBody = {
-  status?: string | undefined;
+  status?: boolean | undefined;
   version?: string | undefined;
 };
 
@@ -21,7 +21,7 @@ export const HealthCheckResponseBody$inboundSchema: z.ZodMiniType<
   HealthCheckResponseBody,
   unknown
 > = z.object({
-  status: types.optional(types.string()),
+  status: types.optional(types.boolean()),
   version: types.optional(types.string()),
 });
 
