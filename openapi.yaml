@@ -53,7 +53,7 @@ paths:
                 type: object
                 properties:
                   status:
-                    type: boolean
+                    type: string
                   version:
                     type: string
                     example: 1.0.28
