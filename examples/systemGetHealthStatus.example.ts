@@ -8,7 +8,7 @@ dotenv.config();
  * Example usage of the petstore-sdk SDK
  *
  * To run this example from the examples directory:
- * npm run build && npx tsx systemHealthCheck.example.ts
+ * npm run build && npx tsx systemGetHealthStatus.example.ts
  */
 
 import { Petstore } from "petstore-sdk";
@@ -19,7 +19,7 @@ const petstore = new Petstore({
 });
 
 async function main() {
-  const result = await petstore.system.healthCheck();
+  const result = await petstore.system.getHealthStatus();
 
   console.log(result);
 }

@@ -23,17 +23,17 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Health check endpoint.
+ * Get API health status.
  *
  * @remarks
- * Returns the health status of the API.
+ * Returns detailed health status of the API including uptime.
  */
-export function systemHealthCheck(
+export function systemGetHealthStatus(
   client: PetstoreCore,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.HealthCheckResponseBody,
+    operations.GetHealthStatusResponseBody,
     | PetstoreError
     | ResponseValidationError
     | ConnectionError
@@ -56,7 +56,7 @@ async function $do(
 ): Promise<
   [
     Result<
-      operations.HealthCheckResponseBody,
+      operations.GetHealthStatusResponseBody,
       | PetstoreError
       | ResponseValidationError
       | ConnectionError
@@ -82,7 +82,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "healthCheck",
+    operationID: "getHealthStatus",
     oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
@@ -120,7 +120,7 @@ async function $do(
   const response = doResult.value;
 
   const [result] = await M.match<
-    operations.HealthCheckResponseBody,
+    operations.GetHealthStatusResponseBody,
     | PetstoreError
     | ResponseValidationError
     | ConnectionError
@@ -130,7 +130,7 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, operations.HealthCheckResponseBody$inboundSchema),
+    M.json(200, operations.GetHealthStatusResponseBody$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, req);
