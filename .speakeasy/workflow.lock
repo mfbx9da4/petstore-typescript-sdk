@@ -1,0 +1,28 @@
+speakeasyVersion: 1.697.5
+sources:
+    petstore:
+        sourceNamespace: petstore
+        sourceRevisionDigest: sha256:deccc6dc64d0e2a49cca989e5f651667a4db466397ee1eba5b4fd69b1c89766c
+        sourceBlobDigest: sha256:5077b99758cc178915507ff816665e6eb530d833b66386a92c258fadb883190c
+        tags:
+            - latest
+            - 1.0.27
+targets:
+    typescript:
+        source: petstore
+        sourceNamespace: petstore
+        sourceRevisionDigest: sha256:deccc6dc64d0e2a49cca989e5f651667a4db466397ee1eba5b4fd69b1c89766c
+        sourceBlobDigest: sha256:5077b99758cc178915507ff816665e6eb530d833b66386a92c258fadb883190c
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        petstore:
+            inputs:
+                - location: ./openapi.yaml
+            registry:
+                location: registry.speakeasyapi.dev/speakeasy-self/speakeasy-self/petstore
+    targets:
+        typescript:
+            target: typescript
+            source: petstore
