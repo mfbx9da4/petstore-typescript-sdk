@@ -232,7 +232,7 @@ paths:
       - pet
       summary: Find pet by ID.
       description: Returns a single pet.
-      operationId: getPetById
+      operationId: fetchPetById
       parameters:
       - name: petId
         in: path
