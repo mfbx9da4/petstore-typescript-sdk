@@ -15,7 +15,7 @@ targets:
         sourceRevisionDigest: sha256:ba4c56bd0d442f14912699c0a6c1adcdcc8eef9f823219166b9203cb2551503a
         sourceBlobDigest: sha256:ad1c8cca870e884ff750fc50234aa5342d8f0bab454a9114775a68f4abd338a5
         codeSamplesNamespace: petstore-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:7c20c7023ec8859f54a2dc0239dab909724ea99c34881b4f21e072efb20a2547
+        codeSamplesRevisionDigest: sha256:605dae76b038a7dfc5796c51db59e99897a29e034f0f90ba96d863e2654af1b6
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
