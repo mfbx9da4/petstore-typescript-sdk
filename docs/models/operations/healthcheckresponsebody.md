@@ -16,5 +16,5 @@ let value: HealthCheckResponseBody = {
 
 | Field              | Type               | Required           | Description        | Example            |
 | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `status`           | *boolean*          | :heavy_minus_sign: | N/A                |                    |
+| `status`           | *string*           | :heavy_minus_sign: | N/A                |                    |
 | `version`          | *string*           | :heavy_minus_sign: | N/A                | 1.0.28             |
