@@ -20,7 +20,7 @@ specific category of applications.
 
 ```typescript
 import { PetstoreCore } from "petstore-sdk/core.js";
-import { petUpdatePetJson } from "petstore-sdk/funcs/petUpdatePetJson.js";
+import { systemHealthCheck } from "petstore-sdk/funcs/systemHealthCheck.js";
 
 // Use `PetstoreCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -30,22 +30,12 @@ const petstore = new PetstoreCore({
 });
 
 async function run() {
-  const res = await petUpdatePetJson(petstore, {
-    id: 10,
-    name: "doggie",
-    category: {
-      id: 1,
-      name: "Dogs",
-    },
-    photoUrls: [
-      "<value 1>",
-    ],
-  });
+  const res = await systemHealthCheck(petstore);
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
   } else {
-    console.log("petUpdatePetJson failed:", res.error);
+    console.log("systemHealthCheck failed:", res.error);
   }
 }
 

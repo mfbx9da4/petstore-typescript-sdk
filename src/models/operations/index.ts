@@ -18,6 +18,7 @@ export * from "./getinventory.js";
 export * from "./getorderbyid.js";
 export * from "./getpetbyid.js";
 export * from "./getuserbyname.js";
+export * from "./healthcheck.js";
 export * from "./loginuser.js";
 export * from "./updatepetform.js";
 export * from "./updatepetjson.js";

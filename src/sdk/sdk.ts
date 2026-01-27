@@ -5,9 +5,15 @@
 import { ClientSDK } from "../lib/sdks.js";
 import { Pet } from "./pet.js";
 import { Store } from "./store.js";
+import { System } from "./system.js";
 import { User } from "./user.js";
 
 export class Petstore extends ClientSDK {
+  private _system?: System;
+  get system(): System {
+    return (this._system ??= new System(this._options));
+  }
+
   private _pet?: Pet;
   get pet(): Pet {
     return (this._pet ??= new Pet(this._options));

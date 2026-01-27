@@ -103,17 +103,7 @@ const petstore = new Petstore({
 });
 
 async function run() {
-  const result = await petstore.pet.updatePetJson({
-    id: 10,
-    name: "doggie",
-    category: {
-      id: 1,
-      name: "Dogs",
-    },
-    photoUrls: [
-      "<value 1>",
-    ],
-  });
+  const result = await petstore.system.healthCheck();
 
   console.log(result);
 }
@@ -144,17 +134,7 @@ const petstore = new Petstore({
 });
 
 async function run() {
-  const result = await petstore.pet.updatePetJson({
-    id: 10,
-    name: "doggie",
-    category: {
-      id: 1,
-      name: "Dogs",
-    },
-    photoUrls: [
-      "<value 1>",
-    ],
-  });
+  const result = await petstore.system.healthCheck();
 
   console.log(result);
 }
@@ -214,6 +194,10 @@ run();
 * [getOrderById](docs/sdks/store/README.md#getorderbyid) - Find purchase order by ID.
 * [deleteOrder](docs/sdks/store/README.md#deleteorder) - Delete purchase order by identifier.
 
+### [System](docs/sdks/system/README.md)
+
+* [healthCheck](docs/sdks/system/README.md#healthcheck) - Health check endpoint.
+
 ### [User](docs/sdks/user/README.md)
 
 * [createUserJson](docs/sdks/user/README.md#createuserjson) - Create user.
@@ -264,6 +248,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`storePlaceOrderForm`](docs/sdks/store/README.md#placeorderform) - Place an order for a pet.
 - [`storePlaceOrderJson`](docs/sdks/store/README.md#placeorderjson) - Place an order for a pet.
 - [`storePlaceOrderRaw`](docs/sdks/store/README.md#placeorderraw) - Place an order for a pet.
+- [`systemHealthCheck`](docs/sdks/system/README.md#healthcheck) - Health check endpoint.
 - [`userCreateUserForm`](docs/sdks/user/README.md#createuserform) - Create user.
 - [`userCreateUserJson`](docs/sdks/user/README.md#createuserjson) - Create user.
 - [`userCreateUserRaw`](docs/sdks/user/README.md#createuserraw) - Create user.
@@ -333,17 +318,7 @@ const petstore = new Petstore({
 });
 
 async function run() {
-  const result = await petstore.pet.updatePetJson({
-    id: 10,
-    name: "doggie",
-    category: {
-      id: 1,
-      name: "Dogs",
-    },
-    photoUrls: [
-      "<value 1>",
-    ],
-  }, {
+  const result = await petstore.system.healthCheck({
     retries: {
       strategy: "backoff",
       backoff: {
@@ -383,17 +358,7 @@ const petstore = new Petstore({
 });
 
 async function run() {
-  const result = await petstore.pet.updatePetJson({
-    id: 10,
-    name: "doggie",
-    category: {
-      id: 1,
-      name: "Dogs",
-    },
-    photoUrls: [
-      "<value 1>",
-    ],
-  });
+  const result = await petstore.system.healthCheck();
 
   console.log(result);
 }
@@ -428,17 +393,7 @@ const petstore = new Petstore({
 
 async function run() {
   try {
-    const result = await petstore.pet.updatePetJson({
-      id: 10,
-      name: "doggie",
-      category: {
-        id: 1,
-        name: "Dogs",
-      },
-      photoUrls: [
-        "<value 1>",
-      ],
-    });
+    const result = await petstore.system.healthCheck();
 
     console.log(result);
   } catch (error) {
