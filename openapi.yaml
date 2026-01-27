@@ -17,7 +17,7 @@ info:
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  version: 1.0.28
+  version: 2.0.0
 externalDocs:
   description: Find out more about Swagger
   url: https://swagger.io
@@ -41,9 +41,9 @@ paths:
     get:
       tags:
       - system
-      summary: Health check endpoint.
-      description: Returns the health status of the API.
-      operationId: healthCheck
+      summary: Get API health status.
+      description: Returns detailed health status of the API including uptime.
+      operationId: getHealthStatus
       responses:
         '200':
           description: API is healthy
@@ -51,12 +51,18 @@ paths:
             application/json:
               schema:
                 type: object
+                required:
+                  - healthy
+                  - apiVersion
                 properties:
-                  status:
+                  healthy:
+                    type: boolean
+                  apiVersion:
                     type: string
-                  version:
-                    type: string
-                    example: 1.0.28
+                    example: 1.0.29
+                  uptime:
+                    type: integer
+                    description: Uptime in seconds
   "/pet":
     put:
       tags:
