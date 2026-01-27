@@ -8,7 +8,7 @@ const petstore = new Petstore({
 });
 
 async function run() {
-  const result = await petstore.system.healthCheck();
+  const result = await petstore.system.getHealthStatus();
 
   console.log(result);
 }

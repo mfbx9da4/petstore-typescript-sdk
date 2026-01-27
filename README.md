@@ -103,7 +103,7 @@ const petstore = new Petstore({
 });
 
 async function run() {
-  const result = await petstore.system.healthCheck();
+  const result = await petstore.system.getHealthStatus();
 
   console.log(result);
 }
@@ -134,7 +134,7 @@ const petstore = new Petstore({
 });
 
 async function run() {
-  const result = await petstore.system.healthCheck();
+  const result = await petstore.system.getHealthStatus();
 
   console.log(result);
 }
@@ -196,7 +196,7 @@ run();
 
 ### [System](docs/sdks/system/README.md)
 
-* [healthCheck](docs/sdks/system/README.md#healthcheck) - Health check endpoint.
+* [getHealthStatus](docs/sdks/system/README.md#gethealthstatus) - Get API health status.
 
 ### [User](docs/sdks/user/README.md)
 
@@ -248,7 +248,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`storePlaceOrderForm`](docs/sdks/store/README.md#placeorderform) - Place an order for a pet.
 - [`storePlaceOrderJson`](docs/sdks/store/README.md#placeorderjson) - Place an order for a pet.
 - [`storePlaceOrderRaw`](docs/sdks/store/README.md#placeorderraw) - Place an order for a pet.
-- [`systemHealthCheck`](docs/sdks/system/README.md#healthcheck) - Health check endpoint.
+- [`systemGetHealthStatus`](docs/sdks/system/README.md#gethealthstatus) - Get API health status.
 - [`userCreateUserForm`](docs/sdks/user/README.md#createuserform) - Create user.
 - [`userCreateUserJson`](docs/sdks/user/README.md#createuserjson) - Create user.
 - [`userCreateUserRaw`](docs/sdks/user/README.md#createuserraw) - Create user.
@@ -318,7 +318,7 @@ const petstore = new Petstore({
 });
 
 async function run() {
-  const result = await petstore.system.healthCheck({
+  const result = await petstore.system.getHealthStatus({
     retries: {
       strategy: "backoff",
       backoff: {
@@ -358,7 +358,7 @@ const petstore = new Petstore({
 });
 
 async function run() {
-  const result = await petstore.system.healthCheck();
+  const result = await petstore.system.getHealthStatus();
 
   console.log(result);
 }
@@ -393,7 +393,7 @@ const petstore = new Petstore({
 
 async function run() {
   try {
-    const result = await petstore.system.healthCheck();
+    const result = await petstore.system.getHealthStatus();
 
     console.log(result);
   } catch (error) {
