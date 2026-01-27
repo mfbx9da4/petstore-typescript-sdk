@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 78f18c6b-6b5a-4e0f-8c33-3b9d8ecaaf56
 management:
-  docChecksum: 71a54418caec9a1d6f36e99681d8e8bb
+  docChecksum: f3add81a505b04e5f2d6d7a822a1d51d
   docVersion: 2.1.0
   speakeasyVersion: 1.698.0
   generationVersion: 2.801.0
-  releaseVersion: 0.1.0
-  configChecksum: 477332eda2d002fb312a0ef61c713c8d
+  releaseVersion: 0.1.1
+  configChecksum: ab6f66d2a07f0ed0ba203eaebbd7ebca
   repoURL: https://github.com/mfbx9da4/petstore-typescript-sdk.git
   installationURL: https://github.com/mfbx9da4/petstore-typescript-sdk
 persistentEdits:
-  generation_id: f72bc386-20d4-4cfe-b8f7-ee48f8745f42
-  pristine_commit_hash: 6b6ec727d58922fff74f440fe2021990a372a5c7
-  pristine_tree_hash: 979dd428fc5e8af972a25e653a93091d1cc5ceb4
+  generation_id: d7e84053-5857-4025-b4f9-d75a0f99448f
+  pristine_commit_hash: 415c2eac0fee8b5e6f77ab2e7330bbe0745898b4
+  pristine_tree_hash: 15685b1fe0437830cf64cd1805d9e50af32fa61d
 features:
   typescript:
     acceptHeaders: 2.81.2
@@ -134,6 +134,18 @@ trackedFiles:
     id: 638051dc6d48
     last_write_checksum: sha1:ee2f48d7733bed4dad909316f2299050cfa1d1ce
     pristine_git_object: 8202e74c1ad0c5b11d3558e33fbe368755a285f9
+  docs/models/operations/fetchpetbyidrequest.md:
+    id: 4daa12d61d90
+    last_write_checksum: sha1:d65ffa0b5996a3a6d5a12d2ca363290a0c321c37
+    pristine_git_object: 456a60935715441332269f0f30f1eb2d0889e494
+  docs/models/operations/fetchpetbyidresponse.md:
+    id: d270b800d67e
+    last_write_checksum: sha1:93e318b392acd93b05c5d42c892bf8a390662e72
+    pristine_git_object: ee77438508c9ddc8ce9cd663b6f3fc549d966c57
+  docs/models/operations/fetchpetbyidsecurity.md:
+    id: b472f3ff7fed
+    last_write_checksum: sha1:9e5adfebfeda46ac7f725299cfc98b456f04e4a6
+    pristine_git_object: 94eb66ed0bfc9ed30142f3c8b628191ec501dab5
   docs/models/operations/findpetsbystatusrequest.md:
     id: ba2b30062385
     last_write_checksum: sha1:683b6a734344bddeec64dd1c74215329aa35fb7f
@@ -166,18 +178,6 @@ trackedFiles:
     id: 86cdf005f04c
     last_write_checksum: sha1:1df7288738ebcc59ff63fd3d372b92b39ac7df06
     pristine_git_object: cc12e5770b89e66383abc7780632772790ec0ea8
-  docs/models/operations/getpetbyidrequest.md:
-    id: 3022848aaff2
-    last_write_checksum: sha1:fa10574d72b8c20550b6b073b8c40cb61e7803d8
-    pristine_git_object: 7aa952f603af07876b22a32baf925f50c377d0ef
-  docs/models/operations/getpetbyidresponse.md:
-    id: 8a7149cc3592
-    last_write_checksum: sha1:c219fb9e541316feaa7392bade085ba3cf100a31
-    pristine_git_object: 1b578296d6802b6cb7350e47cb1ef62d732e6232
-  docs/models/operations/getpetbyidsecurity.md:
-    id: 9d0e0ec87a09
-    last_write_checksum: sha1:1b6c3d7a0e2718220d1a7e105d1053a97308a6ed
-    pristine_git_object: c34f1d69be51f078a63032a8418619f4e6658690
   docs/models/operations/getuserbynamerequest.md:
     id: d903d0291b30
     last_write_checksum: sha1:9470b3d65c54b39c5cdca3d764a07e3b6e9c41d2
@@ -240,8 +240,8 @@ trackedFiles:
     pristine_git_object: c5f4ae69ca1f6c725b623c742335b7addc280820
   docs/sdks/pet/README.md:
     id: 7745e380bb78
-    last_write_checksum: sha1:01fa0fecab36f0f943ece47afca87bf30f78e69d
-    pristine_git_object: 012fd68452804109f3821c8e0a32255a1a8a9498
+    last_write_checksum: sha1:f1f1588496e0743839f9bd243c8290c9c62fcbe1
+    pristine_git_object: 83f3fa24f7f809ce455ddb2afd8170b740fc6d41
   docs/sdks/store/README.md:
     id: c7c274b48df2
     last_write_checksum: sha1:52ac500833b539f9b6eb8acf47401dda0a2d86df
@@ -276,12 +276,12 @@ trackedFiles:
     pristine_git_object: 704d1517591049f57a05167d934074dd371201e6
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:541b9fa8ca8d000a72e14ea0d245599e76fa927a
-    pristine_git_object: 8a797df654b760d3ab12eeb69b33ac13f0e7b005
+    last_write_checksum: sha1:714a560618473e1876d3908b8d0337c25b2576ab
+    pristine_git_object: 04110b86a0e2bc602bb5428f97d8665accd9c944
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:14e4557762b70cd5f3ffb39b735c120f26e6b1f4
-    pristine_git_object: 6e27088fe1fff271136503dec18e19bb8a051f6e
+    last_write_checksum: sha1:e1f9291ff1376451ae1555923bcbe6a6d7a60916
+    pristine_git_object: 3994e411d37d347979efde03edb77e81a247baf4
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:d6a837f6980c9001ce7bd0c29122310de99d7da3
@@ -302,6 +302,10 @@ trackedFiles:
     id: a25915b4f2da
     last_write_checksum: sha1:b8d722c9ddcf84fb2ebb6f7a8c46527d89cfc541
     pristine_git_object: 1efe75d83ca154163cb29f584538a838ef86d815
+  src/funcs/petFetchPetById.ts:
+    id: 123bc830188b
+    last_write_checksum: sha1:cf099399f798dde12701e7216583034f07130c59
+    pristine_git_object: e07b73820769abe889d1c9245bb139b9054d8b53
   src/funcs/petFindPetsByStatus.ts:
     id: 0434dede525a
     last_write_checksum: sha1:6984eb8e88ac115ff0d445ae7d174359d9da8ac4
@@ -310,10 +314,6 @@ trackedFiles:
     id: c057d903e13b
     last_write_checksum: sha1:0e691490c1e72099eac0590eb774ac81a570c459
     pristine_git_object: b65d28ff203e1bc7d0bbde107ddfeadc4ed388f5
-  src/funcs/petGetPetById.ts:
-    id: 83a6bf5de0f6
-    last_write_checksum: sha1:2962ff0dcc5563cdf20154186b4e41dae1345ee5
-    pristine_git_object: c1acbe9283ceed6de03f918d3fe23cf7a6d682ef
   src/funcs/petUpdatePetForm.ts:
     id: dcdd15565940
     last_write_checksum: sha1:8dbef6a513b34c9e6f54c1f1e06efbe73ffa8b7f
@@ -432,8 +432,8 @@ trackedFiles:
     pristine_git_object: 44be0eae8246521b230e8e711a88eff738fc015d
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:4e78654d15074f50702420409d4aac50b806f98b
-    pristine_git_object: 6b99b021e6f8a68a10af089c0680ffe8bea48e40
+    last_write_checksum: sha1:29f3cd9544b2c77e7b80db5d431098a7b39c4900
+    pristine_git_object: 020a6999fd599edbb464a2c170cab2b05d7ca501
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -582,6 +582,10 @@ trackedFiles:
     id: 9a574643d2ff
     last_write_checksum: sha1:77ccfd8dcb01adb11803775c297d355b6dd97943
     pristine_git_object: 321c0c8ac857fed4df84ece493c55d534594fdf6
+  src/models/operations/fetchpetbyid.ts:
+    id: 8c476772e2a2
+    last_write_checksum: sha1:3855d62b1cb7ad5317e0bfeec90ff491b24684f3
+    pristine_git_object: ac97c53b820fb65857ddb665bd89080050c79e7b
   src/models/operations/findpetsbystatus.ts:
     id: bcfd546b7ce8
     last_write_checksum: sha1:aa0f711cd1dba6d2d40c645b27bc09f12b653e17
@@ -602,18 +606,14 @@ trackedFiles:
     id: 5855bb04f0ea
     last_write_checksum: sha1:8803bb169b3e57d4fadc420e78ce689173fb21e3
     pristine_git_object: c45f5316f336da3660a06ae46d3f2151ea7ec6f9
-  src/models/operations/getpetbyid.ts:
-    id: 3c7103f2d526
-    last_write_checksum: sha1:8854eb109e9977d4bd191339ac28c35c9ea6ed2a
-    pristine_git_object: ef9e0f9f54f7a9776dd70ca4dfed614a94ce4610
   src/models/operations/getuserbyname.ts:
     id: 9017ad928a8d
     last_write_checksum: sha1:fecf96b7671a7bc0cc68c4914b010397357b1ecc
     pristine_git_object: b47d53053eb24c9dca1401f09e067de6beb164ae
   src/models/operations/index.ts:
     id: 0d9ffaf774d2
-    last_write_checksum: sha1:0a32b5fc71a72261d84122521bd6da37dc889de0
-    pristine_git_object: 4273fd72b213ebd0d3a7b3019d93591bf73cf570
+    last_write_checksum: sha1:442cec29b16217491b089aaed8c235d29a067528
+    pristine_git_object: 36ada506b72ab9f9b4d84a8ddfeb66e1e88cdcc5
   src/models/operations/loginuser.ts:
     id: ea688586fef4
     last_write_checksum: sha1:169dcfe97b5960eb30f9365a1845437b4f3b005d
@@ -656,8 +656,8 @@ trackedFiles:
     pristine_git_object: ecac2264817bb369ff2dbf0f0e9029807e67ff77
   src/sdk/pet.ts:
     id: 345dee4ece5e
-    last_write_checksum: sha1:cff23385938cf46a018bcd24ccec58fb4b2a428e
-    pristine_git_object: f80a22b9cd340f58b247fda03fc204a204ef5d3b
+    last_write_checksum: sha1:1f6b1e0724f88b02cb0e655ada796b83cbb8f5aa
+    pristine_git_object: 6b85acb3da7a928889911b76d70649f3471d1fe4
   src/sdk/sdk.ts:
     id: 784571af2f69
     last_write_checksum: sha1:a2828cc579389dccad8f62b066572e1362ec2617
@@ -936,4 +936,13 @@ examples:
       responses:
         "200":
           application/json: {"healthy": true, "apiVersion": "1.0.29"}
+  fetchPetById:
+    speakeasy-default-fetch-pet-by-id:
+      parameters:
+        path:
+          petId: 770206
+      responses:
+        "200":
+          application/json: {"id": 10, "name": "doggie", "category": {"id": 1, "name": "Dogs"}, "photoUrls": ["<value 1>"]}
+          application/xml: "0x8Cae9a8B6b"
 examplesVersion: 1.0.2

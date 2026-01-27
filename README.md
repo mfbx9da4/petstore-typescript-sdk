@@ -154,7 +154,7 @@ const petstore = new Petstore({
 });
 
 async function run() {
-  const result = await petstore.pet.getPetById({}, 311674);
+  const result = await petstore.pet.fetchPetById({}, 770206);
 
   console.log(result);
 }
@@ -180,7 +180,7 @@ run();
 * [addPetForm](docs/sdks/pet/README.md#addpetform) - Add a new pet to the store.
 * [findPetsByStatus](docs/sdks/pet/README.md#findpetsbystatus) - Finds Pets by status.
 * [findPetsByTags](docs/sdks/pet/README.md#findpetsbytags) - Finds Pets by tags.
-* [getPetById](docs/sdks/pet/README.md#getpetbyid) - Find pet by ID.
+* [fetchPetById](docs/sdks/pet/README.md#fetchpetbyid) - Find pet by ID.
 * [updatePetWithForm](docs/sdks/pet/README.md#updatepetwithform) - Updates a pet in the store with form data.
 * [deletePet](docs/sdks/pet/README.md#deletepet) - Deletes a pet.
 * [uploadFile](docs/sdks/pet/README.md#uploadfile) - Uploads an image.
@@ -234,9 +234,9 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`petAddPetJson`](docs/sdks/pet/README.md#addpetjson) - Add a new pet to the store.
 - [`petAddPetRaw`](docs/sdks/pet/README.md#addpetraw) - Add a new pet to the store.
 - [`petDeletePet`](docs/sdks/pet/README.md#deletepet) - Deletes a pet.
+- [`petFetchPetById`](docs/sdks/pet/README.md#fetchpetbyid) - Find pet by ID.
 - [`petFindPetsByStatus`](docs/sdks/pet/README.md#findpetsbystatus) - Finds Pets by status.
 - [`petFindPetsByTags`](docs/sdks/pet/README.md#findpetsbytags) - Finds Pets by tags.
-- [`petGetPetById`](docs/sdks/pet/README.md#getpetbyid) - Find pet by ID.
 - [`petUpdatePetForm`](docs/sdks/pet/README.md#updatepetform) - Update an existing pet.
 - [`petUpdatePetJson`](docs/sdks/pet/README.md#updatepetjson) - Update an existing pet.
 - [`petUpdatePetRaw`](docs/sdks/pet/README.md#updatepetraw) - Update an existing pet.
