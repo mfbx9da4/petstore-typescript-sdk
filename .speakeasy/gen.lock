@@ -5,14 +5,14 @@ management:
   docVersion: 2.0.0
   speakeasyVersion: 1.698.0
   generationVersion: 2.801.0
-  releaseVersion: 0.1.0
-  configChecksum: 477332eda2d002fb312a0ef61c713c8d
+  releaseVersion: 0.1.1
+  configChecksum: ab6f66d2a07f0ed0ba203eaebbd7ebca
   repoURL: https://github.com/mfbx9da4/petstore-typescript-sdk.git
   installationURL: https://github.com/mfbx9da4/petstore-typescript-sdk
 persistentEdits:
-  generation_id: a031f639-8369-4e28-a428-f64cc706983a
-  pristine_commit_hash: d00500dc7b5daa80d565729863ba2df4fdd05357
-  pristine_tree_hash: e6efeaaa689b77c6a521939329e13e5bb9cf1da9
+  generation_id: 00bba884-f1d2-416a-b5c5-2f5a4a3b555c
+  pristine_commit_hash: 93a0474bf71b3d70179ced286cacafe1268cb803
+  pristine_tree_hash: 7fcb2e4b4d0b6165ac6739e2566414c2a94cb31a
 features:
   typescript:
     acceptHeaders: 2.81.2
@@ -276,12 +276,12 @@ trackedFiles:
     pristine_git_object: 704d1517591049f57a05167d934074dd371201e6
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:541b9fa8ca8d000a72e14ea0d245599e76fa927a
-    pristine_git_object: 8a797df654b760d3ab12eeb69b33ac13f0e7b005
+    last_write_checksum: sha1:714a560618473e1876d3908b8d0337c25b2576ab
+    pristine_git_object: 04110b86a0e2bc602bb5428f97d8665accd9c944
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:14e4557762b70cd5f3ffb39b735c120f26e6b1f4
-    pristine_git_object: 6e27088fe1fff271136503dec18e19bb8a051f6e
+    last_write_checksum: sha1:e1f9291ff1376451ae1555923bcbe6a6d7a60916
+    pristine_git_object: 3994e411d37d347979efde03edb77e81a247baf4
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:d6a837f6980c9001ce7bd0c29122310de99d7da3
@@ -432,8 +432,8 @@ trackedFiles:
     pristine_git_object: 44be0eae8246521b230e8e711a88eff738fc015d
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:5fc609bf7e7b43644e88d88dd651997e8966762f
-    pristine_git_object: fdc652fbf0cbd586ee3721ff0692b2808a426d6f
+    last_write_checksum: sha1:45a710acdf8daf9dd72c8a27e168aa7f1271600b
+    pristine_git_object: 1cc5e997ff7adf72e878e43c724a9431b56f17e3
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
