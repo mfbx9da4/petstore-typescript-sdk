@@ -4,6 +4,7 @@
 
 import * as z from "zod/v4-mini";
 import { PetstoreCore } from "../core.js";
+import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -107,7 +108,11 @@ async function $do(
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = payload === undefined ? null : payload;
+  const body = payload === undefined
+    ? null
+    : payload instanceof Uint8Array
+    ? new Uint8Array(payload).buffer
+    : payload;
 
   const path = pathToFunc("/user")();
 
@@ -152,7 +157,8 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["4XX", "5XX"],
+    isErrorStatusCode: (statusCode: number) =>
+      matchStatusCode({ status: statusCode } as Response, ["4XX", "5XX"]),
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });

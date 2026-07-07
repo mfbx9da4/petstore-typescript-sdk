@@ -1,21 +1,20 @@
-speakeasyVersion: 1.698.0
+speakeasyVersion: 1.789.0
 sources:
     petstore:
         sourceNamespace: petstore
-        sourceRevisionDigest: sha256:8cef648b9b002c0c1c3e84bd183dcd19ec7b1289067996db7b8df589d851de28
-        sourceBlobDigest: sha256:309b5db982d6c31e092a8d60dbce86cb5b7c16cb67b8f5542f4031787b946dea
+        sourceRevisionDigest: sha256:e845bbc4af14815114c873b02b5df7c5c0bb8649e25b79389d09033ce466bc96
+        sourceBlobDigest: sha256:fed0bc211e22e5a6118495abff49efcb6d1aceeb0bfa4a4b063661359d615709
         tags:
             - latest
-            - main
             - 2.1.0
 targets:
     typescript:
         source: petstore
         sourceNamespace: petstore
-        sourceRevisionDigest: sha256:8cef648b9b002c0c1c3e84bd183dcd19ec7b1289067996db7b8df589d851de28
-        sourceBlobDigest: sha256:309b5db982d6c31e092a8d60dbce86cb5b7c16cb67b8f5542f4031787b946dea
+        sourceRevisionDigest: sha256:e845bbc4af14815114c873b02b5df7c5c0bb8649e25b79389d09033ce466bc96
+        sourceBlobDigest: sha256:fed0bc211e22e5a6118495abff49efcb6d1aceeb0bfa4a4b063661359d615709
         codeSamplesNamespace: petstore-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:9dbb9ebb8db31d72bb29d43d2b956e71b8fa83cd5eee492dd44ccfa183a66d2f
+        codeSamplesRevisionDigest: sha256:8a0e241a3793bc781e8ab3edb8ba722f3f449640e4c6f9275676348602f78de4
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

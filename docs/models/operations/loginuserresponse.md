@@ -9,11 +9,8 @@ let value: LoginUserResponse = {
   headers: {
     "key": [
       "<value 1>",
-      "<value 2>",
-      "<value 3>",
     ],
   },
-  result: "<value>",
 };
 ```
 
@@ -22,4 +19,4 @@ let value: LoginUserResponse = {
 | Field                                | Type                                 | Required                             | Description                          |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | `headers`                            | Record<string, *string*[]>           | :heavy_check_mark:                   | N/A                                  |
-| `result`                             | *operations.LoginUserResponseResult* | :heavy_check_mark:                   | N/A                                  |
+| `result`                             | *operations.LoginUserResponseResult* | :heavy_minus_sign:                   | N/A                                  |
