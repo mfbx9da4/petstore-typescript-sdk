@@ -6,9 +6,9 @@ import { petAddPetForm } from "../funcs/petAddPetForm.js";
 import { petAddPetJson } from "../funcs/petAddPetJson.js";
 import { petAddPetRaw } from "../funcs/petAddPetRaw.js";
 import { petDeletePet } from "../funcs/petDeletePet.js";
+import { petFetchPetById } from "../funcs/petFetchPetById.js";
 import { petFindPetsByStatus } from "../funcs/petFindPetsByStatus.js";
 import { petFindPetsByTags } from "../funcs/petFindPetsByTags.js";
-import { petGetPetById } from "../funcs/petGetPetById.js";
 import { petUpdatePetForm } from "../funcs/petUpdatePetForm.js";
 import { petUpdatePetJson } from "../funcs/petUpdatePetJson.js";
 import { petUpdatePetRaw } from "../funcs/petUpdatePetRaw.js";
@@ -162,12 +162,12 @@ export class Pet extends ClientSDK {
    * @remarks
    * Returns a single pet.
    */
-  async getPetById(
-    security: operations.GetPetByIdSecurity,
+  async fetchPetById(
+    security: operations.FetchPetByIdSecurity,
     petId: number,
     options?: RequestOptions,
-  ): Promise<operations.GetPetByIdResponse | undefined> {
-    return unwrapAsync(petGetPetById(
+  ): Promise<operations.FetchPetByIdResponse | undefined> {
+    return unwrapAsync(petFetchPetById(
       this,
       security,
       petId,
