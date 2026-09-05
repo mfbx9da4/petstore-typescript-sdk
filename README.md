@@ -154,7 +154,7 @@ const petstore = new Petstore({
 });
 
 async function run() {
-  const result = await petstore.pet.getPetById({}, 311674);
+  const result = await petstore.pet.fetchPetById({}, 770206);
 
   console.log(result);
 }
@@ -180,7 +180,7 @@ run();
 * [addPetForm](docs/sdks/pet/README.md#addpetform) - Add a new pet to the store.
 * [findPetsByStatus](docs/sdks/pet/README.md#findpetsbystatus) - Finds Pets by status.
 * [findPetsByTags](docs/sdks/pet/README.md#findpetsbytags) - Finds Pets by tags.
-* [getPetById](docs/sdks/pet/README.md#getpetbyid) - Find pet by ID.
+* [fetchPetById](docs/sdks/pet/README.md#fetchpetbyid) - Find pet by ID.
 * [updatePetWithForm](docs/sdks/pet/README.md#updatepetwithform) - Updates a pet in the store with form data.
 * [deletePet](docs/sdks/pet/README.md#deletepet) - Deletes a pet.
 * [uploadFile](docs/sdks/pet/README.md#uploadfile) - Uploads an image.
@@ -234,9 +234,9 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`petAddPetJson`](docs/sdks/pet/README.md#addpetjson) - Add a new pet to the store.
 - [`petAddPetRaw`](docs/sdks/pet/README.md#addpetraw) - Add a new pet to the store.
 - [`petDeletePet`](docs/sdks/pet/README.md#deletepet) - Deletes a pet.
+- [`petFetchPetById`](docs/sdks/pet/README.md#fetchpetbyid) - Find pet by ID.
 - [`petFindPetsByStatus`](docs/sdks/pet/README.md#findpetsbystatus) - Finds Pets by status.
 - [`petFindPetsByTags`](docs/sdks/pet/README.md#findpetsbytags) - Finds Pets by tags.
-- [`petGetPetById`](docs/sdks/pet/README.md#getpetbyid) - Find pet by ID.
 - [`petUpdatePetForm`](docs/sdks/pet/README.md#updatepetform) - Update an existing pet.
 - [`petUpdatePetJson`](docs/sdks/pet/README.md#updatepetjson) - Update an existing pet.
 - [`petUpdatePetRaw`](docs/sdks/pet/README.md#updatepetraw) - Update an existing pet.
@@ -445,19 +445,23 @@ The `HTTPClient` constructor takes an optional `fetcher` argument that can be
 used to integrate a third-party HTTP client or when writing tests to mock out
 the HTTP client and feed in fixtures.
 
-The following example shows how to use the `"beforeRequest"` hook to to add a
-custom header and a timeout to requests and how to use the `"requestError"` hook
-to log errors:
+The following example shows how to:
+- route requests through a proxy server using [undici](https://www.npmjs.com/package/undici)'s ProxyAgent
+- use the `"beforeRequest"` hook to add a custom header and a timeout to requests
+- use the `"requestError"` hook to log errors
 
 ```typescript
 import { Petstore } from "petstore-sdk";
+import { ProxyAgent } from "undici";
 import { HTTPClient } from "petstore-sdk/lib/http";
 
+const dispatcher = new ProxyAgent("http://proxy.example.com:8080");
+
 const httpClient = new HTTPClient({
-  // fetcher takes a function that has the same signature as native `fetch`.
-  fetcher: (request) => {
-    return fetch(request);
-  }
+  // 'fetcher' takes a function that has the same signature as native 'fetch'.
+  fetcher: (input, init) =>
+    // 'dispatcher' is specific to undici and not part of the standard Fetch API.
+    fetch(input, { ...init, dispatcher } as RequestInit),
 });
 
 httpClient.addHook("beforeRequest", (request) => {
