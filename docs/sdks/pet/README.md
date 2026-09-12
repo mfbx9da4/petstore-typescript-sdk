@@ -17,7 +17,7 @@ Find out more
 * [addPetForm](#addpetform) - Add a new pet to the store.
 * [findPetsByStatus](#findpetsbystatus) - Finds Pets by status.
 * [findPetsByTags](#findpetsbytags) - Finds Pets by tags.
-* [getPetById](#getpetbyid) - Find pet by ID.
+* [fetchPetById](#fetchpetbyid) - Find pet by ID.
 * [updatePetWithForm](#updatepetwithform) - Updates a pet in the store with form data.
 * [deletePet](#deletepet) - Deletes a pet.
 * [uploadFile](#uploadfile) - Uploads an image.
@@ -678,13 +678,13 @@ run();
 | --------------------------- | --------------------------- | --------------------------- |
 | errors.PetstoreDefaultError | 4XX, 5XX                    | \*/\*                       |
 
-## getPetById
+## fetchPetById
 
 Returns a single pet.
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="getPetById" method="get" path="/pet/{petId}" -->
+<!-- UsageSnippet language="typescript" operationID="fetchPetById" method="get" path="/pet/{petId}" -->
 ```typescript
 import { Petstore } from "petstore-sdk";
 
@@ -693,9 +693,9 @@ const petstore = new Petstore({
 });
 
 async function run() {
-  const result = await petstore.pet.getPetById({
+  const result = await petstore.pet.fetchPetById({
     apiKey: "<YOUR_API_KEY_HERE>",
-  }, 311674);
+  }, 770206);
 
   console.log(result);
 }
@@ -709,7 +709,7 @@ The standalone function version of this method:
 
 ```typescript
 import { PetstoreCore } from "petstore-sdk/core.js";
-import { petGetPetById } from "petstore-sdk/funcs/petGetPetById.js";
+import { petFetchPetById } from "petstore-sdk/funcs/petFetchPetById.js";
 
 // Use `PetstoreCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -718,14 +718,14 @@ const petstore = new PetstoreCore({
 });
 
 async function run() {
-  const res = await petGetPetById(petstore, {
+  const res = await petFetchPetById(petstore, {
     apiKey: "<YOUR_API_KEY_HERE>",
-  }, 311674);
+  }, 770206);
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
   } else {
-    console.log("petGetPetById failed:", res.error);
+    console.log("petFetchPetById failed:", res.error);
   }
 }
 
@@ -736,7 +736,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.GetPetByIdSecurity](../../models/operations/getpetbyidsecurity.md)                                                                                                 | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
+| `security`                                                                                                                                                                     | [operations.FetchPetByIdSecurity](../../models/operations/fetchpetbyidsecurity.md)                                                                                             | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `petId`                                                                                                                                                                        | *number*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | ID of pet to return                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
@@ -744,7 +744,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetPetByIdResponse](../../models/operations/getpetbyidresponse.md)\>**
+**Promise\<[operations.FetchPetByIdResponse](../../models/operations/fetchpetbyidresponse.md)\>**
 
 ### Errors
 
