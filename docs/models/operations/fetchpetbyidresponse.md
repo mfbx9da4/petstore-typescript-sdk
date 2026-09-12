@@ -1,4 +1,4 @@
-# GetPetByIdResponse
+# FetchPetByIdResponse
 
 
 ## Supported Types
