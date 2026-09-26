@@ -1,11 +1,11 @@
-# GetPetByIdSecurity
+# FetchPetByIdSecurity
 
 ## Example Usage
 
 ```typescript
-import { GetPetByIdSecurity } from "petstore-sdk/models/operations";
+import { FetchPetByIdSecurity } from "petstore-sdk/models/operations";
 
-let value: GetPetByIdSecurity = {};
+let value: FetchPetByIdSecurity = {};
 ```
 
 ## Fields
