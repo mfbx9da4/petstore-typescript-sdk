@@ -5,6 +5,7 @@
 import * as z from "zod/v4-mini";
 import { PetstoreCore } from "../core.js";
 import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
+import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -32,6 +33,8 @@ import * as types$ from "../types/primitives.js";
  *
  * @remarks
  * Upload image of the pet.
+ *
+ * If set, this operation will use {@link Security.petstoreAuth} from the global security.
  */
 export function petUploadFile(
   client: PetstoreCore,
@@ -108,7 +111,9 @@ async function $do(
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body$ = payload.body;
+  const body$ = payload.body instanceof Uint8Array
+    ? new Uint8Array(payload.body).buffer
+    : payload.body;
 
   const pathParams = {
     petId: encodeSimple("petId", payload.petId, {
@@ -116,7 +121,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/pet/{petId}/uploadImage")(pathParams);
 
   const query = encodeFormQuery({
@@ -130,7 +134,7 @@ async function $do(
 
   const secConfig = await extractSecurity(client._options.petstoreAuth);
   const securityInput = secConfig == null ? {} : { petstoreAuth: secConfig };
-  const requestSecurity = resolveGlobalSecurity(securityInput);
+  const requestSecurity = resolveGlobalSecurity(securityInput, [0]);
 
   const context = {
     options: client._options,
@@ -165,7 +169,8 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["400", "404", "4XX", "5XX"],
+    isErrorStatusCode: (statusCode: number) =>
+      matchStatusCode({ status: statusCode } as Response, ["4XX", "5XX"]),
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
