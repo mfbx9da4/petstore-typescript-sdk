@@ -11,30 +11,30 @@ import { smartUnion } from "../../types/smartUnion.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type GetPetByIdSecurity = {
+export type FetchPetByIdSecurity = {
   apiKey?: string | undefined;
   petstoreAuth?: string | undefined;
 };
 
-export type GetPetByIdRequest = {
+export type FetchPetByIdRequest = {
   /**
    * ID of pet to return
    */
   petId: number;
 };
 
-export type GetPetByIdResponse = components.Pet | Uint8Array | string;
+export type FetchPetByIdResponse = components.Pet | Uint8Array | string;
 
 /** @internal */
-export type GetPetByIdSecurity$Outbound = {
+export type FetchPetByIdSecurity$Outbound = {
   api_key?: string | undefined;
   petstore_auth?: string | undefined;
 };
 
 /** @internal */
-export const GetPetByIdSecurity$outboundSchema: z.ZodMiniType<
-  GetPetByIdSecurity$Outbound,
-  GetPetByIdSecurity
+export const FetchPetByIdSecurity$outboundSchema: z.ZodMiniType<
+  FetchPetByIdSecurity$Outbound,
+  FetchPetByIdSecurity
 > = z.pipe(
   z.object({
     apiKey: z.optional(z.string()),
@@ -48,47 +48,47 @@ export const GetPetByIdSecurity$outboundSchema: z.ZodMiniType<
   }),
 );
 
-export function getPetByIdSecurityToJSON(
-  getPetByIdSecurity: GetPetByIdSecurity,
+export function fetchPetByIdSecurityToJSON(
+  fetchPetByIdSecurity: FetchPetByIdSecurity,
 ): string {
   return JSON.stringify(
-    GetPetByIdSecurity$outboundSchema.parse(getPetByIdSecurity),
+    FetchPetByIdSecurity$outboundSchema.parse(fetchPetByIdSecurity),
   );
 }
 
 /** @internal */
-export type GetPetByIdRequest$Outbound = {
+export type FetchPetByIdRequest$Outbound = {
   petId: number;
 };
 
 /** @internal */
-export const GetPetByIdRequest$outboundSchema: z.ZodMiniType<
-  GetPetByIdRequest$Outbound,
-  GetPetByIdRequest
+export const FetchPetByIdRequest$outboundSchema: z.ZodMiniType<
+  FetchPetByIdRequest$Outbound,
+  FetchPetByIdRequest
 > = z.object({
   petId: z.int(),
 });
 
-export function getPetByIdRequestToJSON(
-  getPetByIdRequest: GetPetByIdRequest,
+export function fetchPetByIdRequestToJSON(
+  fetchPetByIdRequest: FetchPetByIdRequest,
 ): string {
   return JSON.stringify(
-    GetPetByIdRequest$outboundSchema.parse(getPetByIdRequest),
+    FetchPetByIdRequest$outboundSchema.parse(fetchPetByIdRequest),
   );
 }
 
 /** @internal */
-export const GetPetByIdResponse$inboundSchema: z.ZodMiniType<
-  GetPetByIdResponse,
+export const FetchPetByIdResponse$inboundSchema: z.ZodMiniType<
+  FetchPetByIdResponse,
   unknown
 > = smartUnion([components.Pet$inboundSchema, b64$.zodInbound]);
 
-export function getPetByIdResponseFromJSON(
+export function fetchPetByIdResponseFromJSON(
   jsonString: string,
-): SafeParseResult<GetPetByIdResponse, SDKValidationError> {
+): SafeParseResult<FetchPetByIdResponse, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetPetByIdResponse$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetPetByIdResponse' from JSON`,
+    (x) => FetchPetByIdResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FetchPetByIdResponse' from JSON`,
   );
 }
