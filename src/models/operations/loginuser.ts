@@ -25,7 +25,7 @@ export type LoginUserResponseResult = string | string;
 
 export type LoginUserResponse = {
   headers: { [k: string]: Array<string> };
-  result: string | string;
+  result?: string | string | undefined;
 };
 
 /** @internal */
@@ -74,7 +74,7 @@ export const LoginUserResponse$inboundSchema: z.ZodMiniType<
 > = z.pipe(
   z.object({
     Headers: z._default(z.record(z.string(), z.array(z.string())), {}),
-    Result: smartUnion([types.string(), types.string()]),
+    Result: types.optional(smartUnion([types.string(), types.string()])),
   }),
   z.transform((v) => {
     return remap$(v, {

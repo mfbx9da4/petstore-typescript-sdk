@@ -8,11 +8,11 @@ Order Status
 import { OrderStatus } from "petstore-sdk/models/components";
 
 let value: OrderStatus = "approved";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "placed" | "approved" | "delivered" | Unrecognized<string>
