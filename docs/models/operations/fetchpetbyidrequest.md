@@ -1,12 +1,12 @@
-# GetPetByIdRequest
+# FetchPetByIdRequest
 
 ## Example Usage
 
 ```typescript
-import { GetPetByIdRequest } from "petstore-sdk/models/operations";
+import { FetchPetByIdRequest } from "petstore-sdk/models/operations";
 
-let value: GetPetByIdRequest = {
-  petId: 77449,
+let value: FetchPetByIdRequest = {
+  petId: 44796,
 };
 ```
 

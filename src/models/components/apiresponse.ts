@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v4-mini";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -15,12 +15,14 @@ export type ApiResponse = {
 };
 
 /** @internal */
-export const ApiResponse$inboundSchema: z.ZodMiniType<ApiResponse, unknown> = z
-  .object({
-    code: types.optional(types.number()),
-    type: types.optional(types.string()),
-    message: types.optional(types.string()),
-  });
+export const ApiResponse$inboundSchema: z.ZodMiniType<ApiResponse, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      code: types.optional(types.number()),
+      type: types.optional(types.string()),
+      message: types.optional(types.string()),
+    })
+  );
 
 export function apiResponseFromJSON(
   jsonString: string,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v4-mini";
 import * as b64$ from "../../lib/base64.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import * as components from "../components/index.js";
@@ -31,9 +31,11 @@ export type FindPetsByTagsRequest$Outbound = {
 export const FindPetsByTagsRequest$outboundSchema: z.ZodMiniType<
   FindPetsByTagsRequest$Outbound,
   FindPetsByTagsRequest
-> = z.object({
-  tags: z.array(z.string()),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    tags: z.array(z.string()),
+  })
+);
 
 export function findPetsByTagsRequestToJSON(
   findPetsByTagsRequest: FindPetsByTagsRequest,
@@ -47,7 +49,9 @@ export function findPetsByTagsRequestToJSON(
 export const FindPetsByTagsResponse$inboundSchema: z.ZodMiniType<
   FindPetsByTagsResponse,
   unknown
-> = smartUnion([z.array(components.Pet$inboundSchema), b64$.zodInbound]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([z.array(components.Pet$inboundSchema), b64$.zodInbound])
+);
 
 export function findPetsByTagsResponseFromJSON(
   jsonString: string,

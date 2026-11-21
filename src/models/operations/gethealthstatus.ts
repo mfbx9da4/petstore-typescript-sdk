@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v4-mini";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -24,11 +24,13 @@ export type GetHealthStatusResponseBody = {
 export const GetHealthStatusResponseBody$inboundSchema: z.ZodMiniType<
   GetHealthStatusResponseBody,
   unknown
-> = z.object({
-  healthy: types.boolean(),
-  apiVersion: types.string(),
-  uptime: types.optional(types.number()),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    healthy: types.boolean(),
+    apiVersion: types.string(),
+    uptime: types.optional(types.number()),
+  })
+);
 
 export function getHealthStatusResponseBodyFromJSON(
   jsonString: string,

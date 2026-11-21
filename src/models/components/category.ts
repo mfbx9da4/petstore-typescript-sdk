@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v4-mini";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -14,11 +14,13 @@ export type Category = {
 };
 
 /** @internal */
-export const Category$inboundSchema: z.ZodMiniType<Category, unknown> = z
-  .object({
-    id: types.optional(types.number()),
-    name: types.optional(types.string()),
-  });
+export const Category$inboundSchema: z.ZodMiniType<Category, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: types.optional(types.number()),
+      name: types.optional(types.string()),
+    })
+  );
 /** @internal */
 export type Category$Outbound = {
   id?: number | undefined;
@@ -29,10 +31,12 @@ export type Category$Outbound = {
 export const Category$outboundSchema: z.ZodMiniType<
   Category$Outbound,
   Category
-> = z.object({
-  id: z.optional(z.int()),
-  name: z.optional(z.string()),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.optional(z.int()),
+    name: z.optional(z.string()),
+  })
+);
 
 export function categoryToJSON(category: Category): string {
   return JSON.stringify(Category$outboundSchema.parse(category));

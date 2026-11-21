@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v4-mini";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -48,21 +48,24 @@ export type Pet = {
 };
 
 /** @internal */
-export const Status$inboundSchema: z.ZodMiniType<Status, unknown> = openEnums
-  .inboundSchema(Status);
+export const Status$inboundSchema: z.ZodMiniType<Status, unknown> =
+  /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(Status));
 /** @internal */
-export const Status$outboundSchema: z.ZodMiniType<string, Status> = openEnums
-  .outboundSchema(Status);
+export const Status$outboundSchema: z.ZodMiniType<string, Status> =
+  /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(Status));
 
 /** @internal */
-export const Pet$inboundSchema: z.ZodMiniType<Pet, unknown> = z.object({
-  id: types.optional(types.number()),
-  name: types.string(),
-  category: types.optional(Category$inboundSchema),
-  photoUrls: z.array(types.string()),
-  tags: types.optional(z.array(Tag$inboundSchema)),
-  status: types.optional(Status$inboundSchema),
-});
+export const Pet$inboundSchema: z.ZodMiniType<Pet, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: types.optional(types.number()),
+      name: types.string(),
+      category: types.optional(Category$inboundSchema),
+      photoUrls: z.array(types.string()),
+      tags: types.optional(z.array(Tag$inboundSchema)),
+      status: types.optional(Status$inboundSchema),
+    })
+  );
 /** @internal */
 export type Pet$Outbound = {
   id?: number | undefined;
@@ -74,14 +77,17 @@ export type Pet$Outbound = {
 };
 
 /** @internal */
-export const Pet$outboundSchema: z.ZodMiniType<Pet$Outbound, Pet> = z.object({
-  id: z.optional(z.int()),
-  name: z.string(),
-  category: z.optional(Category$outboundSchema),
-  photoUrls: z.array(z.string()),
-  tags: z.optional(z.array(Tag$outboundSchema)),
-  status: z.optional(Status$outboundSchema),
-});
+export const Pet$outboundSchema: z.ZodMiniType<Pet$Outbound, Pet> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: z.optional(z.int()),
+      name: z.string(),
+      category: z.optional(Category$outboundSchema),
+      photoUrls: z.array(z.string()),
+      tags: z.optional(z.array(Tag$outboundSchema)),
+      status: z.optional(Status$outboundSchema),
+    })
+  );
 
 export function petToJSON(pet: Pet): string {
   return JSON.stringify(Pet$outboundSchema.parse(pet));

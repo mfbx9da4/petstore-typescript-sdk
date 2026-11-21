@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v4-mini";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as components from "../components/index.js";
 
 export type UpdateUserFormRequest = {
@@ -26,10 +27,12 @@ export type UpdateUserFormRequest$Outbound = {
 export const UpdateUserFormRequest$outboundSchema: z.ZodMiniType<
   UpdateUserFormRequest$Outbound,
   UpdateUserFormRequest
-> = z.object({
-  username: z.string(),
-  body: z.optional(components.User$outboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    username: z.string(),
+    body: z.optional(components.User$outboundSchema),
+  })
+);
 
 export function updateUserFormRequestToJSON(
   updateUserFormRequest: UpdateUserFormRequest,

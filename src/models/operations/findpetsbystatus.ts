@@ -4,7 +4,7 @@
 
 import * as z from "zod/v4-mini";
 import * as b64$ from "../../lib/base64.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { smartUnion } from "../../types/smartUnion.js";
@@ -37,9 +37,8 @@ export type FindPetsByStatusResponse =
   | string;
 
 /** @internal */
-export const Status$outboundSchema: z.ZodMiniEnum<typeof Status> = z.enum(
-  Status,
-);
+export const Status$outboundSchema: z.ZodMiniEnum<typeof Status> =
+  /* @__PURE__ */ lazySchema$(() => z.enum(Status));
 
 /** @internal */
 export type FindPetsByStatusRequest$Outbound = {
@@ -50,9 +49,11 @@ export type FindPetsByStatusRequest$Outbound = {
 export const FindPetsByStatusRequest$outboundSchema: z.ZodMiniType<
   FindPetsByStatusRequest$Outbound,
   FindPetsByStatusRequest
-> = z.object({
-  status: z._default(Status$outboundSchema, "available"),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    status: z._default(Status$outboundSchema, "available"),
+  })
+);
 
 export function findPetsByStatusRequestToJSON(
   findPetsByStatusRequest: FindPetsByStatusRequest,
@@ -66,7 +67,9 @@ export function findPetsByStatusRequestToJSON(
 export const FindPetsByStatusResponse$inboundSchema: z.ZodMiniType<
   FindPetsByStatusResponse,
   unknown
-> = smartUnion([z.array(components.Pet$inboundSchema), b64$.zodInbound]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([z.array(components.Pet$inboundSchema), b64$.zodInbound])
+);
 
 export function findPetsByStatusResponseFromJSON(
   jsonString: string,
