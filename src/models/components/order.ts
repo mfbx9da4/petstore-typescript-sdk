@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v4-mini";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -37,20 +37,23 @@ export type Order = {
 
 /** @internal */
 export const OrderStatus$inboundSchema: z.ZodMiniType<OrderStatus, unknown> =
-  openEnums.inboundSchema(OrderStatus);
+  /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(OrderStatus));
 /** @internal */
 export const OrderStatus$outboundSchema: z.ZodMiniType<string, OrderStatus> =
-  openEnums.outboundSchema(OrderStatus);
+  /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(OrderStatus));
 
 /** @internal */
-export const Order$inboundSchema: z.ZodMiniType<Order, unknown> = z.object({
-  id: types.optional(types.number()),
-  petId: types.optional(types.number()),
-  quantity: types.optional(types.number()),
-  shipDate: types.optional(types.date()),
-  status: types.optional(OrderStatus$inboundSchema),
-  complete: types.optional(types.boolean()),
-});
+export const Order$inboundSchema: z.ZodMiniType<Order, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: types.optional(types.number()),
+      petId: types.optional(types.number()),
+      quantity: types.optional(types.number()),
+      shipDate: types.optional(types.date()),
+      status: types.optional(OrderStatus$inboundSchema),
+      complete: types.optional(types.boolean()),
+    })
+  );
 /** @internal */
 export type Order$Outbound = {
   id?: number | undefined;
@@ -62,15 +65,17 @@ export type Order$Outbound = {
 };
 
 /** @internal */
-export const Order$outboundSchema: z.ZodMiniType<Order$Outbound, Order> = z
-  .object({
-    id: z.optional(z.int()),
-    petId: z.optional(z.int()),
-    quantity: z.optional(z.int()),
-    shipDate: z.optional(z.pipe(z.date(), z.transform(v => v.toISOString()))),
-    status: z.optional(OrderStatus$outboundSchema),
-    complete: z.optional(z.boolean()),
-  });
+export const Order$outboundSchema: z.ZodMiniType<Order$Outbound, Order> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: z.optional(z.int()),
+      petId: z.optional(z.int()),
+      quantity: z.optional(z.int()),
+      shipDate: z.optional(z.pipe(z.date(), z.transform(v => v.toISOString()))),
+      status: z.optional(OrderStatus$outboundSchema),
+      complete: z.optional(z.boolean()),
+    })
+  );
 
 export function orderToJSON(order: Order): string {
   return JSON.stringify(Order$outboundSchema.parse(order));

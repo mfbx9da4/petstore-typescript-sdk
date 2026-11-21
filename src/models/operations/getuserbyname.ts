@@ -4,7 +4,7 @@
 
 import * as z from "zod/v4-mini";
 import * as b64$ from "../../lib/base64.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import * as components from "../components/index.js";
@@ -28,9 +28,11 @@ export type GetUserByNameRequest$Outbound = {
 export const GetUserByNameRequest$outboundSchema: z.ZodMiniType<
   GetUserByNameRequest$Outbound,
   GetUserByNameRequest
-> = z.object({
-  username: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    username: z.string(),
+  })
+);
 
 export function getUserByNameRequestToJSON(
   getUserByNameRequest: GetUserByNameRequest,
@@ -44,7 +46,9 @@ export function getUserByNameRequestToJSON(
 export const GetUserByNameResponse$inboundSchema: z.ZodMiniType<
   GetUserByNameResponse,
   unknown
-> = smartUnion([components.User$inboundSchema, b64$.zodInbound]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([components.User$inboundSchema, b64$.zodInbound])
+);
 
 export function getUserByNameResponseFromJSON(
   jsonString: string,

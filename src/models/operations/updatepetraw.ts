@@ -4,7 +4,7 @@
 
 import * as z from "zod/v4-mini";
 import * as b64$ from "../../lib/base64.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import * as components from "../components/index.js";
@@ -16,7 +16,9 @@ export type UpdatePetRawResponse = components.Pet | Uint8Array | string;
 export const UpdatePetRawResponse$inboundSchema: z.ZodMiniType<
   UpdatePetRawResponse,
   unknown
-> = smartUnion([components.Pet$inboundSchema, b64$.zodInbound]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([components.Pet$inboundSchema, b64$.zodInbound])
+);
 
 export function updatePetRawResponseFromJSON(
   jsonString: string,

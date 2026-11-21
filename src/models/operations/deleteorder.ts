@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v4-mini";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type DeleteOrderRequest = {
   /**
@@ -20,9 +21,11 @@ export type DeleteOrderRequest$Outbound = {
 export const DeleteOrderRequest$outboundSchema: z.ZodMiniType<
   DeleteOrderRequest$Outbound,
   DeleteOrderRequest
-> = z.object({
-  orderId: z.int(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    orderId: z.int(),
+  })
+);
 
 export function deleteOrderRequestToJSON(
   deleteOrderRequest: DeleteOrderRequest,
