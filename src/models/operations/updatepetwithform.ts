@@ -4,7 +4,7 @@
 
 import * as z from "zod/v4-mini";
 import * as b64$ from "../../lib/base64.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import * as components from "../components/index.js";
@@ -38,11 +38,13 @@ export type UpdatePetWithFormRequest$Outbound = {
 export const UpdatePetWithFormRequest$outboundSchema: z.ZodMiniType<
   UpdatePetWithFormRequest$Outbound,
   UpdatePetWithFormRequest
-> = z.object({
-  petId: z.int(),
-  name: z.optional(z.string()),
-  status: z.optional(z.string()),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    petId: z.int(),
+    name: z.optional(z.string()),
+    status: z.optional(z.string()),
+  })
+);
 
 export function updatePetWithFormRequestToJSON(
   updatePetWithFormRequest: UpdatePetWithFormRequest,
@@ -56,7 +58,9 @@ export function updatePetWithFormRequestToJSON(
 export const UpdatePetWithFormResponse$inboundSchema: z.ZodMiniType<
   UpdatePetWithFormResponse,
   unknown
-> = smartUnion([components.Pet$inboundSchema, b64$.zodInbound]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([components.Pet$inboundSchema, b64$.zodInbound])
+);
 
 export function updatePetWithFormResponseFromJSON(
   jsonString: string,

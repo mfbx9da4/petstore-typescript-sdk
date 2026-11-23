@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v4-mini";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -23,16 +23,19 @@ export type User = {
 };
 
 /** @internal */
-export const User$inboundSchema: z.ZodMiniType<User, unknown> = z.object({
-  id: types.optional(types.number()),
-  username: types.optional(types.string()),
-  firstName: types.optional(types.string()),
-  lastName: types.optional(types.string()),
-  email: types.optional(types.string()),
-  password: types.optional(types.string()),
-  phone: types.optional(types.string()),
-  userStatus: types.optional(types.number()),
-});
+export const User$inboundSchema: z.ZodMiniType<User, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: types.optional(types.number()),
+      username: types.optional(types.string()),
+      firstName: types.optional(types.string()),
+      lastName: types.optional(types.string()),
+      email: types.optional(types.string()),
+      password: types.optional(types.string()),
+      phone: types.optional(types.string()),
+      userStatus: types.optional(types.number()),
+    })
+  );
 /** @internal */
 export type User$Outbound = {
   id?: number | undefined;
@@ -46,18 +49,19 @@ export type User$Outbound = {
 };
 
 /** @internal */
-export const User$outboundSchema: z.ZodMiniType<User$Outbound, User> = z.object(
-  {
-    id: z.optional(z.int()),
-    username: z.optional(z.string()),
-    firstName: z.optional(z.string()),
-    lastName: z.optional(z.string()),
-    email: z.optional(z.string()),
-    password: z.optional(z.string()),
-    phone: z.optional(z.string()),
-    userStatus: z.optional(z.int()),
-  },
-);
+export const User$outboundSchema: z.ZodMiniType<User$Outbound, User> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: z.optional(z.int()),
+      username: z.optional(z.string()),
+      firstName: z.optional(z.string()),
+      lastName: z.optional(z.string()),
+      email: z.optional(z.string()),
+      password: z.optional(z.string()),
+      phone: z.optional(z.string()),
+      userStatus: z.optional(z.int()),
+    })
+  );
 
 export function userToJSON(user: User): string {
   return JSON.stringify(User$outboundSchema.parse(user));

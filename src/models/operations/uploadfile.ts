@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v4-mini";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type UploadFileRequest = {
   /**
@@ -37,18 +38,18 @@ export type UploadFileRequest$Outbound = {
 export const UploadFileRequest$outboundSchema: z.ZodMiniType<
   UploadFileRequest$Outbound,
   UploadFileRequest
-> = z.object({
-  petId: z.int(),
-  additionalMetadata: z.optional(z.string()),
-  body: z.optional(
-    z.union([
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    petId: z.int(),
+    additionalMetadata: z.optional(z.string()),
+    body: z.optional(z.union([
       z.custom<ReadableStream<Uint8Array>>(x => x instanceof ReadableStream),
       z.custom<Blob>(x => x instanceof Blob),
       z.custom<ArrayBuffer>(x => x instanceof ArrayBuffer),
       z.custom<Uint8Array>(x => x instanceof Uint8Array),
-    ]),
-  ),
-});
+    ])),
+  })
+);
 
 export function uploadFileRequestToJSON(
   uploadFileRequest: UploadFileRequest,
