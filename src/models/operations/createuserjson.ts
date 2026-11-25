@@ -4,7 +4,7 @@
 
 import * as z from "zod/v4-mini";
 import * as b64$ from "../../lib/base64.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import * as components from "../components/index.js";
@@ -16,7 +16,9 @@ export type CreateUserJsonResponse = components.User | Uint8Array | string;
 export const CreateUserJsonResponse$inboundSchema: z.ZodMiniType<
   CreateUserJsonResponse,
   unknown
-> = smartUnion([components.User$inboundSchema, b64$.zodInbound]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([components.User$inboundSchema, b64$.zodInbound])
+);
 
 export function createUserJsonResponseFromJSON(
   jsonString: string,

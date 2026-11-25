@@ -4,7 +4,7 @@
 
 import * as z from "zod/v4-mini";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { smartUnion } from "../../types/smartUnion.js";
@@ -25,7 +25,7 @@ export type LoginUserResponseResult = string | string;
 
 export type LoginUserResponse = {
   headers: { [k: string]: Array<string> };
-  result: string | string;
+  result?: string | string | undefined;
 };
 
 /** @internal */
@@ -38,10 +38,12 @@ export type LoginUserRequest$Outbound = {
 export const LoginUserRequest$outboundSchema: z.ZodMiniType<
   LoginUserRequest$Outbound,
   LoginUserRequest
-> = z.object({
-  username: z.optional(z.string()),
-  password: z.optional(z.string()),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    username: z.optional(z.string()),
+    password: z.optional(z.string()),
+  })
+);
 
 export function loginUserRequestToJSON(
   loginUserRequest: LoginUserRequest,
@@ -55,7 +57,9 @@ export function loginUserRequestToJSON(
 export const LoginUserResponseResult$inboundSchema: z.ZodMiniType<
   LoginUserResponseResult,
   unknown
-> = smartUnion([types.string(), types.string()]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([types.string(), types.string()])
+);
 
 export function loginUserResponseResultFromJSON(
   jsonString: string,
@@ -71,17 +75,19 @@ export function loginUserResponseResultFromJSON(
 export const LoginUserResponse$inboundSchema: z.ZodMiniType<
   LoginUserResponse,
   unknown
-> = z.pipe(
-  z.object({
-    Headers: z._default(z.record(z.string(), z.array(z.string())), {}),
-    Result: smartUnion([types.string(), types.string()]),
-  }),
-  z.transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  }),
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.pipe(
+    z.object({
+      Headers: z._default(z.record(z.string(), z.array(z.string())), {}),
+      Result: types.optional(smartUnion([types.string(), types.string()])),
+    }),
+    z.transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    }),
+  )
 );
 
 export function loginUserResponseFromJSON(

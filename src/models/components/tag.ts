@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v4-mini";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -14,10 +14,13 @@ export type Tag = {
 };
 
 /** @internal */
-export const Tag$inboundSchema: z.ZodMiniType<Tag, unknown> = z.object({
-  id: types.optional(types.number()),
-  name: types.optional(types.string()),
-});
+export const Tag$inboundSchema: z.ZodMiniType<Tag, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: types.optional(types.number()),
+      name: types.optional(types.string()),
+    })
+  );
 /** @internal */
 export type Tag$Outbound = {
   id?: number | undefined;
@@ -25,10 +28,13 @@ export type Tag$Outbound = {
 };
 
 /** @internal */
-export const Tag$outboundSchema: z.ZodMiniType<Tag$Outbound, Tag> = z.object({
-  id: z.optional(z.int()),
-  name: z.optional(z.string()),
-});
+export const Tag$outboundSchema: z.ZodMiniType<Tag$Outbound, Tag> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: z.optional(z.int()),
+      name: z.optional(z.string()),
+    })
+  );
 
 export function tagToJSON(tag: Tag): string {
   return JSON.stringify(Tag$outboundSchema.parse(tag));
