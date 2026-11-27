@@ -5,12 +5,12 @@
 import * as z from "zod/v4-mini";
 import { PetstoreCore } from "../core.js";
 import { encodeSimple } from "../lib/encodings.js";
+import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
-import { RequestOptions } from "../lib/sdks.js";
+import { encodePath, RequestOptions } from "../lib/sdks.js";
 import { resolveSecurity } from "../lib/security.js";
-import { pathToFunc } from "../lib/url.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -32,14 +32,14 @@ import * as types$ from "../types/primitives.js";
  * @remarks
  * Returns a single pet.
  */
-export function petGetPetById(
+export function petFetchPetById(
   client: PetstoreCore,
-  security: operations.GetPetByIdSecurity,
+  security: operations.FetchPetByIdSecurity,
   petId: number,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.GetPetByIdResponse | undefined,
+    operations.FetchPetByIdResponse | undefined,
     | PetstoreError
     | ResponseValidationError
     | ConnectionError
@@ -60,13 +60,13 @@ export function petGetPetById(
 
 async function $do(
   client: PetstoreCore,
-  security: operations.GetPetByIdSecurity,
+  security: operations.FetchPetByIdSecurity,
   petId: number,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      operations.GetPetByIdResponse | undefined,
+      operations.FetchPetByIdResponse | undefined,
       | PetstoreError
       | ResponseValidationError
       | ConnectionError
@@ -79,13 +79,13 @@ async function $do(
     APICall,
   ]
 > {
-  const input: operations.GetPetByIdRequest = {
+  const input: operations.FetchPetByIdRequest = {
     petId: petId,
   };
 
   const parsed = safeParse(
     input,
-    (value) => z.parse(operations.GetPetByIdRequest$outboundSchema, value),
+    (value) => z.parse(operations.FetchPetByIdRequest$outboundSchema, value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -100,8 +100,11 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
-  const path = pathToFunc("/pet/{petId}")(pathParams);
+  const pathResult = encodePath("/pet/{petId}", pathParams);
+  if (!pathResult.ok) {
+    return [pathResult, { status: "invalid" }];
+  }
+  const path = pathResult.value;
 
   const headers = new Headers(compactMap({
     Accept: "application/json;q=1, application/xml;q=0",
@@ -127,7 +130,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "getPetById",
+    operationID: "fetchPetById",
     oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
@@ -156,7 +159,8 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["400", "404", "4XX", "5XX"],
+    isErrorStatusCode: (statusCode: number) =>
+      matchStatusCode({ status: statusCode } as Response, ["4XX", "5XX"]),
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -166,7 +170,7 @@ async function $do(
   const response = doResult.value;
 
   const [result] = await M.match<
-    operations.GetPetByIdResponse | undefined,
+    operations.FetchPetByIdResponse | undefined,
     | PetstoreError
     | ResponseValidationError
     | ConnectionError
@@ -176,15 +180,17 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, types$.optional(operations.GetPetByIdResponse$inboundSchema)),
-    M.bytes(200, types$.optional(operations.GetPetByIdResponse$inboundSchema), {
-      ctype: "application/xml",
-    }),
+    M.json(200, types$.optional(operations.FetchPetByIdResponse$inboundSchema)),
+    M.bytes(
+      200,
+      types$.optional(operations.FetchPetByIdResponse$inboundSchema),
+      { ctype: "application/xml" },
+    ),
     M.fail([400, 404, "4XX"]),
     M.fail("5XX"),
     M.nil(
       "default",
-      types$.optional(operations.GetPetByIdResponse$inboundSchema),
+      types$.optional(operations.FetchPetByIdResponse$inboundSchema),
     ),
   )(response, req);
   if (!result.ok) {

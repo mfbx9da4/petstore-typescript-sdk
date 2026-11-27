@@ -4,6 +4,7 @@
 
 import * as z from "zod/v4-mini";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type GetInventorySecurity = {
   apiKey: string;
@@ -18,15 +19,17 @@ export type GetInventorySecurity$Outbound = {
 export const GetInventorySecurity$outboundSchema: z.ZodMiniType<
   GetInventorySecurity$Outbound,
   GetInventorySecurity
-> = z.pipe(
-  z.object({
-    apiKey: z.string(),
-  }),
-  z.transform((v) => {
-    return remap$(v, {
-      apiKey: "api_key",
-    });
-  }),
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.pipe(
+    z.object({
+      apiKey: z.string(),
+    }),
+    z.transform((v) => {
+      return remap$(v, {
+        apiKey: "api_key",
+      });
+    }),
+  )
 );
 
 export function getInventorySecurityToJSON(

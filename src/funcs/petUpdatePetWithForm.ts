@@ -5,12 +5,12 @@
 import * as z from "zod/v4-mini";
 import { PetstoreCore } from "../core.js";
 import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
+import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
-import { RequestOptions } from "../lib/sdks.js";
+import { encodePath, RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
-import { pathToFunc } from "../lib/url.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -31,6 +31,8 @@ import * as types$ from "../types/primitives.js";
  *
  * @remarks
  * Updates a pet resource based on the form data.
+ *
+ * If set, this operation will use {@link Security.petstoreAuth} from the global security.
  */
 export function petUpdatePetWithForm(
   client: PetstoreCore,
@@ -106,8 +108,11 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
-  const path = pathToFunc("/pet/{petId}")(pathParams);
+  const pathResult = encodePath("/pet/{petId}", pathParams);
+  if (!pathResult.ok) {
+    return [pathResult, { status: "invalid" }];
+  }
+  const path = pathResult.value;
 
   const query = encodeFormQuery({
     "name": payload.name,
@@ -120,7 +125,7 @@ async function $do(
 
   const secConfig = await extractSecurity(client._options.petstoreAuth);
   const securityInput = secConfig == null ? {} : { petstoreAuth: secConfig };
-  const requestSecurity = resolveGlobalSecurity(securityInput);
+  const requestSecurity = resolveGlobalSecurity(securityInput, [0]);
 
   const context = {
     options: client._options,
@@ -155,7 +160,8 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["400", "4XX", "5XX"],
+    isErrorStatusCode: (statusCode: number) =>
+      matchStatusCode({ status: statusCode } as Response, ["4XX", "5XX"]),
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });

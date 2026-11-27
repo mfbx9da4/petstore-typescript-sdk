@@ -4,7 +4,7 @@
 
 import * as z from "zod/v4-mini";
 import * as b64$ from "../../lib/base64.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import * as components from "../components/index.js";
@@ -28,9 +28,11 @@ export type GetOrderByIdRequest$Outbound = {
 export const GetOrderByIdRequest$outboundSchema: z.ZodMiniType<
   GetOrderByIdRequest$Outbound,
   GetOrderByIdRequest
-> = z.object({
-  orderId: z.int(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    orderId: z.int(),
+  })
+);
 
 export function getOrderByIdRequestToJSON(
   getOrderByIdRequest: GetOrderByIdRequest,
@@ -44,7 +46,9 @@ export function getOrderByIdRequestToJSON(
 export const GetOrderByIdResponse$inboundSchema: z.ZodMiniType<
   GetOrderByIdResponse,
   unknown
-> = smartUnion([components.Order$inboundSchema, b64$.zodInbound]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([components.Order$inboundSchema, b64$.zodInbound])
+);
 
 export function getOrderByIdResponseFromJSON(
   jsonString: string,

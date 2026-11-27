@@ -4,6 +4,7 @@
 
 import * as z from "zod/v4-mini";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type DeletePetRequest = {
   apiKey?: string | undefined;
@@ -23,16 +24,18 @@ export type DeletePetRequest$Outbound = {
 export const DeletePetRequest$outboundSchema: z.ZodMiniType<
   DeletePetRequest$Outbound,
   DeletePetRequest
-> = z.pipe(
-  z.object({
-    apiKey: z.optional(z.string()),
-    petId: z.int(),
-  }),
-  z.transform((v) => {
-    return remap$(v, {
-      apiKey: "api_key",
-    });
-  }),
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.pipe(
+    z.object({
+      apiKey: z.optional(z.string()),
+      petId: z.int(),
+    }),
+    z.transform((v) => {
+      return remap$(v, {
+        apiKey: "api_key",
+      });
+    }),
+  )
 );
 
 export function deletePetRequestToJSON(
